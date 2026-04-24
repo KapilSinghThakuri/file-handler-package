@@ -1,0 +1,54 @@
+{
+  "version": "1.0.0",
+  "name": "kapil/file-handler",
+  "description": "",
+  "keywords": [
+    "kapil",
+    "file-handler"
+  ],
+  "homepage": "https://github.com/kapil/file-handler",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Kapil Thakuri",
+      "email": "kapilsinghthakuri33@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^8.2",
+    "illuminate/support": "^10.0|^11.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^8.0|^9.0",
+    "phpunit/phpunit": "^10.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Kapil\\FileHandler\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Kapil\\FileHandler\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Kapil\\FileHandler\\FileHandlerServiceProvider"
+      ],
+      "aliases": {
+        "FileHandler": "Kapil\\FileHandler\\FileHandlerFacade"
+      }
+    }
+  }
+}
