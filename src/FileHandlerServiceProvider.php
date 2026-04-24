@@ -3,6 +3,8 @@
 namespace Kapil\FileHandler;
 
 use Illuminate\Support\ServiceProvider;
+use Kapil\FileHandler\Contracts\FileHandlerContract;
+use Kapil\FileHandler\Services\FileHandlerService;
 
 class FileHandlerServiceProvider extends ServiceProvider
 {
@@ -21,7 +23,7 @@ class FileHandlerServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('file-handler.php'),
+                __DIR__ . '/../config/config.php' => config_path('file-handler.php'),
             ], 'config');
 
             // Publishing the views.
@@ -50,11 +52,18 @@ class FileHandlerServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'file-handler');
+        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'file-handler');
 
         // Register the main class to use with the facade
         $this->app->singleton('file-handler', function () {
             return new FileHandler;
         });
+
+
+        // Bind all contracts to concrete implementations
+        $this->app->singleton(
+            FileHandlerContract::class,
+            FileHandlerService::class
+        );
     }
 }

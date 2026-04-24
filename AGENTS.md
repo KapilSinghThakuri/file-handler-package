@@ -5,6 +5,12 @@
 - **Namespace**: `Kapil\FileHandler`
 - **Entry points**: `src/FileHandler.php`, `src/FileHandlerServiceProvider.php`, `src/FileHandlerFacade.php`
 
+## Architecture
+- `FileHandler.php` - Core class with business logic (currently empty scaffolding)
+- `FileHandlerServiceProvider.php` - Registers singleton 'file-handler', merges config, publishes to config
+- `FileHandlerFacade.php` - Enables `FileHandler::method()` syntax via facade pattern
+- Config publishes: `php artisan vendor:publish --tag=config`
+
 ## Commands
 ```bash
 composer test          # Run PHPUnit
